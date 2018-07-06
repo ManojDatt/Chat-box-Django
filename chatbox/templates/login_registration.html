@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+<title>Login & Signup</title>
+{% endblock %}
+{% block content %}
+
+<main>
+	<section class="login-sec">
+		<div class="login-container">
+			<div class="box"></div>
+			<div class="container-forms">
+				<div class="container-info">
+					<div class="info-item login-info">
+						<div class="login-table">
+							<div class="login-table-cell">
+								<p>
+									Have an account?
+								</p>
+								<div class="btn">
+									Log in
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="info-item">
+						<div class="login-table">
+							<div class="login-table-cell">
+								<p>
+									Don't have an account? 
+								</p>
+								<div class="btn">
+									Sign up
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="container-form">
+					<div class="form-item log-in">
+						<form method="post" action="" id="login_form">
+              				{% csrf_token %}
+
+						<div class="login-table">
+							<div class="login-table-cell">
+							<h5>SIGN IN</h5>
+								<div class="form-group">
+									<label>Mobile Number</label>
+									{{login_form.mobile}}
+								</div>           
+								<div class="form-group">
+									<label>Password</label>
+									{{login_form.password}}
+								</div>            
+								<div class="btn">
+									Log in 
+								</div>
+
+								<a href="forgot-password.html" class="forgot-btn">forgot Password?</a>
+
+								<div class="col-md-12 login_error"></div>
+							</div>
+						</div>
+						</form>
+					</div>
+					<div class="form-item sign-up">
+						<div class="login-table">
+							<form method="post" action="" id="signup_form">
+              				{% csrf_token %}
+							<div class="login-table-cell">
+								<h5>SIGN up</h5>
+								<div class="form-group">
+									<label>Mobile Number</label>
+									{{registration_form.mobile}}
+								</div>           
+								<div class="form-group">
+									<label>Color Code</label>
+									{{registration_form.color_code}}
+								</div>   
+								<div class="form-group">
+									<label>Date Of Birth</label>
+									{{registration_form.date_of_birth}}
+								</div>           
+								<div class="form-group">
+									<label>Password</label>
+									{{registration_form.password}}
+								</div> 
+								<div class="form-group">
+									<label>Password Confirm</label>
+									{{registration_form.confirm_password}}
+								</div>   
+								<div class="btn">
+									Sign up
+								</div>
+								<div class="col-md-12 signup_error"></div>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	</section>
+
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+	$(".info-item .btn").click(function(){  $(".login-container").toggleClass("log-in");});$(".container-form .btn").click(function(){  $(".login-container").addClass("active");});
+</script>
+
+{% endblock %}
