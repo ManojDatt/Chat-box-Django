@@ -52,11 +52,9 @@
 									<label>Password</label>
 									{{login_form.password}}
 								</div>            
-								<div class="btn">
+								<div class="btn" id="login_submit">
 									Log in 
 								</div>
-
-								<a href="forgot-password.html" class="forgot-btn">forgot Password?</a>
 
 								<div class="col-md-12 login_error"></div>
 							</div>
@@ -89,7 +87,7 @@
 									<label>Password Confirm</label>
 									{{registration_form.confirm_password}}
 								</div>   
-								<div class="btn">
+								<div class="btn" id="signup_submit">
 									Sign up
 								</div>
 								<div class="col-md-12 signup_error"></div>
@@ -109,9 +107,12 @@
 {% endblock %}
 
 {% block scripts %}
-<script>
-
-	$(".info-item .btn").click(function(){  $(".login-container").toggleClass("log-in");});$(".container-form .btn").click(function(){  $(".login-container").addClass("active");});
+<script type="text/javascript">
+	$("#signup_submit").click(function(){
+		$.post("{% url 'registration'%}", $("#signup_form").serialize(), function(data, status){
+			console.log(data)
+		})
+	})
 </script>
 
 {% endblock %}
