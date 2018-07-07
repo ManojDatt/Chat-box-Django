@@ -25,7 +25,7 @@ SECRET_KEY = '5rt#84rv0xk&prj8x!@4i6-#9a^*^e=!0^@p8ev-(tu-5z318k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["ichat-box.herokuapp.com"]
 
 
 # Application definition
