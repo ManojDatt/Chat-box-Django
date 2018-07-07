@@ -9,4 +9,4 @@ class ChatMessageSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_sendon(self, obj):
-        return obj.created_at.strftime('%H:%M %p, %d %B %Y')
+        return obj.created_at.strftime('%H:%M %S, %d-%m-%Y')

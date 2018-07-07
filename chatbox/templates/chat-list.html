@@ -12,6 +12,7 @@
         <span class="icon-circle" style="background-color: {{request.user.color_code}};"></span>
         <p> <b>{{request.user.username | title}}</b></p>
       </div>
+      <p class="preview"><h5>Best experience.....</h5></p>
     </div>
     <div id="search">
       <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
@@ -40,8 +41,8 @@
   </div>
   <div class="content">
     <div class="contact-profile">
-        <p> <b>{{request.user.username | title}}</b></p>
-        <span class="icon-circle" style="background-color: {{request.user.color_code}};"></span>
+        <p> <b></b></p>
+        <span class="icon-circle"></span>
         <div class="social-media"><a href="{% url 'logout' %}">
         <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
       </div>

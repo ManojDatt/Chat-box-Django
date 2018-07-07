@@ -661,3 +661,16 @@
         display: inline-block;
         float: right;
 }
+
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 0px 0px;
+    font-size: 9px;
+    line-height: 1;
+    color: #ababab;
+    vertical-align: middle;
+    background-color: #7770; 
+    border-radius: 10px;
+    bottom: 0px;
+}

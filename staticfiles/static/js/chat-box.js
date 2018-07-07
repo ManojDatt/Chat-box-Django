@@ -5,23 +5,34 @@ $(".expand-button").click(function() {
 	$("#contacts").toggleClass("expanded");
 });
 
+function current_time(){
+  var currentdate = new Date(); 
+    var datetime =  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds() + ", "
+                + currentdate.getDate() + "-"
+                + (currentdate.getMonth()+1)+ "-"
+                + currentdate.getFullYear();
+  return datetime;
+} 
 
-function newMessageSend(message, message_id) {
+function newMessageSend(message, message_id, time) {
 	
 	if($.trim(message) == '') {
 		return false;
 	}
-	$('<li class="sent" message-id="'+message_id+'"><p>' + message + '</p></li>').appendTo($('.messages ul'));
+	$('<li class="sent" message-id="'+message_id+'"><p>' + message + '<br><span class="badge preview">'+time+'</span></p></li>').appendTo($('.messages ul'));
 	$('.contact.active .preview').html('<span>You: </span>' + message);
 	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 };
 
-function newMessageReceived(message, message_id) {
+function newMessageReceived(message, message_id, time) {
 	
 	if($.trim(message) == '') {
 		return false;
 	}
-	$('<li class="replies" message-id="'+message_id+'"><p>' + message + '</p></li>').appendTo($('.messages ul'));
+	$('<li class="replies" message-id="'+message_id+'"><p>' + message + '<br><span class="badge preview">'+time+'</span></p></li>').appendTo($('.messages ul'));
 	$('.contact.active .preview').html('<span>You: </span>' + message);
 	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 };
@@ -34,7 +45,8 @@ function MessageSend(){
                         }
       $.post('/chat-box/send-message', request_data, function(data, status){
         $('.message-input #message_box').val(null);
-        newMessageSend(message, data.message_id);
+        time = current_time()
+        newMessageSend(message, data.message_id, time);
       })
 }
 $(document).on('click', '#send_message' , function() {
@@ -74,9 +86,9 @@ $(".contact").click(function(){
         	})
         	if(! message_present){
         		if(val.sender == parseInt(receiver)){
-	        		newMessageReceived(val.message, val.id)
+	        		newMessageReceived(val.message, val.id, val.sendon)
 	        	}else{
-	        		 newMessageSend(val.message, val.id)
+	        		 newMessageSend(val.message, val.id, val.sendon)
 	        	}
         	}
         	
@@ -104,3 +116,5 @@ $(document).on('keypress keyup','.search-contact' , function(e) {
   	}
   })
 });
+
+
