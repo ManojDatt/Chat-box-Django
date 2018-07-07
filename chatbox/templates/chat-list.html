@@ -11,13 +11,11 @@
       <div class="wrap">
         <span class="icon-circle" style="background-color: {{request.user.color_code}};"></span>
         <p> <b>{{request.user.username | title}}</b></p>
-
-        
       </div>
     </div>
     <div id="search">
       <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-      <input type="text" placeholder="Search contacts..." />
+      <input type="text" placeholder="Search contacts..." class="search-contact" />
     </div>
     <div id="contacts">
       <ul>
@@ -32,7 +30,7 @@
             {% endif %}
             <div class="meta">
               <p class="name">{{user.username | title }}</p>
-              <p class="preview">You just got LITT up, Mike.</p>
+              <p class="preview">{{user.get_lastmessage}}</p>
             </div>
           </div>
         </li>
@@ -51,11 +49,13 @@
 
     <div class="messages">
       <ul>
-        <li class="sent">
-          <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
-        </li>
-        <li class="replies">
-          <p>When you're backed against the wall, break the god damn thing down.</p>
+        <li class="text-center">
+          <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Start Conversation</h5>
+            <p class="card-text">Select Any user and start chat.</p>
+          </div>
+        </div>
         </li>
       </ul>
     </div>
@@ -64,6 +64,7 @@
       <input type="text" placeholder="Write your message..." id="message_box" name="message" readonly="" />
       <input type="hidden" name="sender" id="sender_id" value="{{request.user.id}}">
       <input type="hidden" name="receiver" id="receiver_id">
+      <input type="hidden" name="receiver" id="receiver_id">
       <button class="button" id="send_message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
       </div>
     </div>
@@ -71,5 +72,5 @@
 </div>
 {% endblock %}
 {% block scripts %}
-
+  
 {% endblock %}

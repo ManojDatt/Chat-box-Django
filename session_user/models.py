@@ -42,4 +42,13 @@ class ChatUser(AbstractUser):
 			self.set_password(self.password)
 		super(ChatUser, self).save(*args, **kwargs)
 
+	def get_lastmessage(self):
+		from chatbox.models import ChatMessage
+		from django.db.models import Q
+		queryset = ChatMessage.objects.filter(Q(sender= self)|Q(receiver= self))
+		if queryset.exists():
+			return queryset.last().message
+		else:
+			return '..'
+
 

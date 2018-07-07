@@ -13,6 +13,9 @@ import json
 
 class SessionView(TemplateView):
     def get(self, request, *args, **kwargs):
+    	if request.user.is_authenticated():
+    		return HttpResponseRedirect(reverse_lazy('conversation'))
+
         context = {"login_form": LoginForm,
                    "registration_form": RegistrationForm
                     }
