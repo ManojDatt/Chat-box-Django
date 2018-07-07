@@ -12,14 +12,12 @@ from django.http import HttpResponse
 import json
 
 class SessionView(TemplateView):
-    def get(self, request, *args, **kwargs):
-    	if request.user.is_authenticated():
-    		return HttpResponseRedirect(reverse_lazy('conversation'))
+	def get(self, request, *args, **kwargs):
+		if request.user.is_authenticated():
+			return HttpResponseRedirect(reverse_lazy('conversation'))
 
-        context = {"login_form": LoginForm,
-                   "registration_form": RegistrationForm
-                    }
-        return render(request, 'login_registration.html', context)
+		context = {"login_form": LoginForm,"registration_form": RegistrationForm}
+		return render(request, 'login_registration.html', context)
 
 class LoginView(View):
 	def post(self, request, *args, **kwargs):
