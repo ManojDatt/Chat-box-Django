@@ -45,8 +45,8 @@
 							<div class="login-table-cell">
 							<h5>SIGN IN</h5>
 								<div class="form-group">
-									<label>Mobile Number</label>
-									{{login_form.mobile}}
+									<label>User Name</label>
+									{{login_form.username}}
 								</div>           
 								<div class="form-group">
 									<label>Password</label>
@@ -68,12 +68,16 @@
 							<div class="login-table-cell">
 								<h5>SIGN up</h5>
 								<div class="form-group">
-									<label>Mobile Number</label>
-									{{registration_form.mobile}}
+									<label>User Name</label>
+									{{registration_form.username}}
 								</div>           
 								<div class="form-group">
 									<label>Color Code</label>
 									{{registration_form.color_code}}
+								</div>
+								<div class="form-group">
+									<label>Mobile Number</label>
+									{{registration_form.mobile}}
 								</div>   
 								<div class="form-group">
 									<label>Date Of Birth</label>
@@ -110,7 +114,28 @@
 <script type="text/javascript">
 	$("#signup_submit").click(function(){
 		$.post("{% url 'registration'%}", $("#signup_form").serialize(), function(data, status){
-			console.log(data)
+			$(".signup_error").empty()
+			
+			if(data.code == 200){
+				$(".signup_error").append("<span class='label label-success text-center'>"+data.message+"</span>")
+				window.location.replace("{% url 'conversation' %}");
+			}
+			else{
+				$(".signup_error").append("<span class='label label-danger text-center'>"+data.message+"</span>")
+			}
+		})
+	})
+
+	$("#login_submit").click(function(){
+		$.post("{% url 'login'%}", $("#login_form").serialize(), function(data, status){
+			$(".login_error").empty()
+			if(data.code == 200){
+				$(".login_error").append("<span class='label label-success text-center'>"+data.message+"</span>")
+				window.location.replace("{% url 'conversation' %}");
+			}
+			else{
+				$(".login_error").append("<span class='label label-danger text-center'>"+data.message+"</span>")
+			}
 		})
 	})
 </script>

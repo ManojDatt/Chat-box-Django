@@ -2691,7 +2691,7 @@ input[type="checkbox"]:checked + label:before {
   left: 30px;
   top: -30px;
   width: 305px;
-  height: 510px;
+  height: 600px;
   background-color: #fff;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   -moz-transition: all 0.5s;
@@ -2806,7 +2806,7 @@ input[type="checkbox"]:checked + label:before {
   background: rgba(0, 0, 0, 0) url("../images/login-bg.jpg") no-repeat scroll 0 0 / cover ;
   display: inline-block;
   padding-bottom: 110px;
-  padding-top: 282px;
+  padding-top: 230px;
   position: relative;
   width: 100%;
 }
@@ -3224,3 +3224,6 @@ a.gettechBtn > img {
 
 
 
+
+.login_error{ text-align: center; padding-top: 2%; font-size: 15px;}
+.signup_error{ text-align: center; padding-top: 2%; font-size: 15px;}

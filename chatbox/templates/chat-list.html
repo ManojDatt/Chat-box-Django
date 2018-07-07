@@ -1,0 +1,75 @@
+{% extends 'chat-box-base.html' %}
+{% load staticfiles %}
+{% block title %}
+<title>Chat Box</title>
+{% endblock %}
+{% block content %}
+
+<div id="frame">
+  <div id="sidepanel">
+    <div id="profile">
+      <div class="wrap">
+        <span class="icon-circle" style="background-color: {{request.user.color_code}};"></span>
+        <p> <b>{{request.user.username | title}}</b></p>
+
+        
+      </div>
+    </div>
+    <div id="search">
+      <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+      <input type="text" placeholder="Search contacts..." />
+    </div>
+    <div id="contacts">
+      <ul>
+      {% for user in list_user %}
+        <li class="contact">
+          <div class="wrap" contact-id="{{user.id}}">
+            <span class="contact-status online"></span>
+            {% if user.color_code %}
+            <div class="icon-circle" style="background-color: {{user.color_code}};"></div>
+            {% else %}
+              <div class="icon-circle" style="background-color: #123;"></div>
+            {% endif %}
+            <div class="meta">
+              <p class="name">{{user.username | title }}</p>
+              <p class="preview">You just got LITT up, Mike.</p>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="content">
+    <div class="contact-profile">
+        <p> <b>{{request.user.username | title}}</b></p>
+        <span class="icon-circle" style="background-color: {{request.user.color_code}};"></span>
+        <div class="social-media"><a href="{% url 'logout' %}">
+        <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
+      </div>
+    </div>
+
+    <div class="messages">
+      <ul>
+        <li class="sent">
+          <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
+        </li>
+        <li class="replies">
+          <p>When you're backed against the wall, break the god damn thing down.</p>
+        </li>
+      </ul>
+    </div>
+    <div class="message-input">
+      <div class="wrap">
+      <input type="text" placeholder="Write your message..." id="message_box" name="message" readonly="" />
+      <input type="hidden" name="sender" id="sender_id" value="{{request.user.id}}">
+      <input type="hidden" name="receiver" id="receiver_id">
+      <button class="button" id="send_message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+
+{% endblock %}
