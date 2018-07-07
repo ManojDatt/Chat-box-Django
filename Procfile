@@ -1,0 +1,1 @@
+web: gunicorn djangochatapp.wsgi --timeout 90
