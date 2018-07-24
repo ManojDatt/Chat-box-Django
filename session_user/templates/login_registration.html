@@ -52,8 +52,11 @@
 									<label>Password</label>
 									{{login_form.password}}
 								</div>            
-								<div class="btn" id="login_submit">
+								<div class="form-group">
+								<div class="btn col-md-6" id="login_submit">
 									Log in 
+								</div>
+								<img src="/static/images/right-arrow.png" align="right" class="col-md-4">
 								</div>
 
 								<div class="col-md-12 login_error"></div>
@@ -91,9 +94,15 @@
 									<label>Password Confirm</label>
 									{{registration_form.confirm_password}}
 								</div>   
-								<div class="btn" id="signup_submit">
+								
+								<div class="form-group">
+								<img src="/static/images/left-arrow.png" align="left" class="col-md-4">
+								<div class="btn col-md-6" id="signup_submit">
 									Sign up
 								</div>
+								
+								</div>
+
 								<div class="col-md-12 signup_error"></div>
 							</div>
 							</form>
